@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import CharactersList from './pages/CharactersList';
+import { BrowserRouter } from 'react-router-dom';
+import Template from './components/Template';
+
+import './global.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 root.render(
-  <React.StrictMode>
-    <CharactersList />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Template />
+  </BrowserRouter>
 );

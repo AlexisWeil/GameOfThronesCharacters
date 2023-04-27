@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'GoT';
+    src: url('./fonts/game-of-thrones.ttf') format('truetype');
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+    color: #333;
+}
+
+#root {
+    height: 100%;
+}
