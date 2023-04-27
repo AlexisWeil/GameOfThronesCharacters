@@ -4,13 +4,25 @@ import Home from '../../pages/Home';
 import CharacterDetails from '../../pages/CharacterDetails';
 import { Character } from '../../models/Character';
 import { useEffect } from 'react';
-import { LeftMenu, LeftMenuItem, LeftMenuLogo, TemplateContent, TemplateWrapper } from './styles';
+import {
+  LangSwitch,
+  LangSwitchWrapper,
+  LeftMenu,
+  LeftMenuItem,
+  LeftMenuLogo,
+  TemplateContent,
+  TemplateWrapper
+} from './styles';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { addNewCharacter, fetchCharacters } from '../../redux/charactersReducer';
+import { useTranslation } from 'react-i18next';
 
 const Logo = require('./assets/logo.png');
+const FrFlag = require('./assets/fr.png');
+const EnFlag = require('./assets/en.png');
 
 const Template = () => {
+  const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const { characters } = useAppSelector((state) => state.characters)
 
@@ -22,6 +34,21 @@ const Template = () => {
   return (
     <TemplateWrapper>
       <LeftMenu>
+        <LangSwitchWrapper>
+          <LangSwitch
+            onClick={() => i18n.changeLanguage('fr')}
+            alt="Switch to French"
+            src={FrFlag}
+            selected={i18n.language === 'fr'}
+          />
+          <LangSwitch
+            onClick={() => i18n.changeLanguage('en')}
+            alt="Switch to English"
+            src={EnFlag}
+            selected={i18n.language === 'en'}
+          />
+        </LangSwitchWrapper>
+
         <LeftMenuLogo
           alt="Logo Game of Thrones"
           src={Logo}
@@ -31,14 +58,14 @@ const Template = () => {
           to="/"
           active={!!useMatch('/')}
         >
-          Home
+          {t('home.menu-item')}
         </LeftMenuItem>
 
         <LeftMenuItem
           to="/characters"
           active={!!useMatch('/characters')}
         >
-          Characters list
+          {t('characters.menu-item')}
         </LeftMenuItem>
       </LeftMenu>
 

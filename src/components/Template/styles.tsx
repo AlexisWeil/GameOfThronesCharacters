@@ -55,3 +55,22 @@ export const TemplateContent = styled.article`
   box-sizing: border-box;
   flex: 1;
 `;
+
+export const LangSwitchWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+interface LangSwitchProps {
+  selected: boolean
+}
+
+export const LangSwitch = styled.img<LangSwitchProps>`
+  width: 25px;
+  margin-left: 7px;
+  cursor: pointer;
+  border: 3px solid ${(props) => props.selected ? colors.gold : 'white'};
+  border-radius: 50%;
+`;

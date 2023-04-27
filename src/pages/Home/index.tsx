@@ -1,12 +1,18 @@
 import React from 'react';
 import { Description, HomeWrapper } from './styles';
 import Title from '../../components/Title';
+import { useTranslation } from 'react-i18next';
 
-const Home: React.FC = () =>
-  <HomeWrapper>
-    <Title>Game of Thrones Characters</Title>
+const Home: React.FC = () => {
+  const { t } = useTranslation();
 
-    <Description>List of Game of Thrones Characters, what they look like, their family, and their title</Description>
-  </HomeWrapper>;
+  return (
+    <HomeWrapper>
+      <Title>{t('home.title')}</Title>
+
+      <Description>{t('home.description')}</Description>
+    </HomeWrapper>
+  );
+};
 
 export default Home;

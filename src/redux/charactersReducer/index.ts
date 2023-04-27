@@ -49,7 +49,7 @@ const charactersSlice = createSlice({
         ...state,
         characters: [],
         isFetchingCharacters: false,
-        fetchingError: 'Error while fetching characters'
+        fetchingError: 'characters.errors.fetch-list'
       })
     );
   }

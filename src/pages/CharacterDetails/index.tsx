@@ -6,8 +6,10 @@ import Title from '../../components/Title';
 import { CharacterDetailsWrapper, Detail } from './styles';
 import { useAppSelector } from '../../redux/store';
 import DisplayError from '../../components/DisplayError';
+import { useTranslation } from 'react-i18next';
 
 const CharacterDetails: React.FC = () => {
+  const { t } = useTranslation();
   const { characters, isFetchingCharacters, fetchingError } = useAppSelector((state) => state.characters);
   const params = useParams();
 
@@ -21,8 +23,8 @@ const CharacterDetails: React.FC = () => {
 
       {!isFetchingCharacters && !character &&
         <div>
-          <DisplayError>Unknown character</DisplayError>
-          <Link to="/characters">Go back to list</Link>
+          <DisplayError>{t('characters.errors.unknown')}</DisplayError>
+          <Link to="/characters">{t('characters.details.go-back')}</Link>
         </div>
       }
 
@@ -39,11 +41,11 @@ const CharacterDetails: React.FC = () => {
           /> <br/>
 
           <Detail>
-            <strong>Title</strong> <span>{character.title}</span>
+            <strong>{t('characters.details.character-title')}</strong> <span>{character.title}</span>
           </Detail>
 
           <Detail>
-            <strong>Family</strong> <span>{character.family}</span>
+            <strong>{t('characters.details.character-family')}</strong> <span>{character.family}</span>
           </Detail>
         </CharacterDetailsWrapper>
       }

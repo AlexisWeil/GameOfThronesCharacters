@@ -1,0 +1,28 @@
+{
+  "home": {
+    "menu-item": "Accueil",
+    "title": "Game of Thrones Characters",
+    "description": "Liste des personnages de Game of Thrones, leur image, leur famille, et leur titre"
+  },
+  "characters": {
+    "menu-item": "Liste des personnages",
+    "list": {
+      "title": "Liste des personnages"
+    },
+    "details": {
+      "go-back": "Retour à la liste",
+      "character-name": "Nom",
+      "character-title": "Titre",
+      "charater-family": "Famille",
+      "charater-image-url": "URL d'image"
+    },
+    "add": {
+      "title": "Ajouter un personnage",
+      "button": "Ajouter"
+    },
+    "errors": {
+      "unknown": "Personnage inconnu",
+      "fetch-list": "Erreur lors de la récupération des personnages"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "home": {
+    "menu-item": "Home",
+    "title": "Game of Thrones Characters",
+    "description": "List of Game of Thrones Characters, what they look like, their family, and their title"
+  },
+  "characters": {
+    "menu-item": "Characters list",
+    "list": {
+      "title": "Characters list"
+    },
+    "details": {
+      "go-back": "Go back to list",
+      "character-name": "Name",
+      "character-title": "Title",
+      "character-family": "Family",
+      "character-image-url": "Image URL"
+    },
+    "add": {
+      "title": "Add character",
+      "button": "Add"
+    },
+    "errors": {
+      "unknown": "Unknown character",
+      "fetch-list": "Error while fetching characters' list"
+    }
+  }
+}

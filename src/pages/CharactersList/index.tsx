@@ -10,8 +10,10 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { addNewCharacter, deleteCharacter } from '../../redux/charactersReducer';
 import DisplayError from '../../components/DisplayError';
 import { AiFillDelete } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
 
 const CharactersList: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { characters, isFetchingCharacters, fetchingError } = useAppSelector((state) => state.characters);
@@ -27,12 +29,12 @@ const CharactersList: React.FC = () => {
         onAddCharacter={onAddCharacter}
       />
 
-      <Title size="small">Characters list</Title>
+      <Title size="small">{t('characters.list.title')}</Title>
 
       {isFetchingCharacters ?
         <Loader /> :
         <CharactersListWrapper>
-          {fetchingError && <DisplayError>{fetchingError}</DisplayError>}
+          {fetchingError && <DisplayError>{t(fetchingError)}</DisplayError>}
 
           {characters.map((c: Character) =>
             <CharactersListItem

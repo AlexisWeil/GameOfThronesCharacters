@@ -3,7 +3,7 @@ import { InputLabel, InputWrapper } from './styles';
 
 interface Props {
   type: string,
-  label?: string,
+  label?: string | null,
   value?: string,
   autofocus?: boolean,
   onChange?: (v: string) => void,

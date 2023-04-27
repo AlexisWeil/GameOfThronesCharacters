@@ -4,6 +4,7 @@ import Title from '../../../../components/Title';
 import { AddCharacterFormWrapper } from './styles';
 import Input from '../../../../components/Input';
 import Button from '../../../../components/Button';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const AddCharacterForm: React.FC<Props> = ({ onAddCharacter, nextId }) => {
+  const { t } = useTranslation();
   const [nameToAdd, setNameToAdd] = useState('');
   const [titleToAdd, setTitleToAdd] = useState('');
   const [familyToAdd, setFamilyToAdd] = useState('');
@@ -43,11 +45,11 @@ const AddCharacterForm: React.FC<Props> = ({ onAddCharacter, nextId }) => {
 
   return (
     <AddCharacterFormWrapper>
-      <Title size="small">Add character</Title>
+      <Title size="small">{t('characters.add.title')}</Title>
 
       <Input
         type="text"
-        label="Name"
+        label={t('characters.details.character-name')}
         value={nameToAdd}
         onChange={setNameToAdd}
         autofocus
@@ -55,21 +57,21 @@ const AddCharacterForm: React.FC<Props> = ({ onAddCharacter, nextId }) => {
 
       <Input
         type="text"
-        label="Title"
+        label={t('characters.details.character-title')}
         value={titleToAdd}
         onChange={setTitleToAdd}
       />
 
       <Input
         type="text"
-        label="Family"
+        label={t('characters.details.character-family')}
         value={familyToAdd}
         onChange={setFamilyToAdd}
       />
 
       <Input
         type="text"
-        label="Image URL"
+        label={t('characters.details.character-image-url')}
         value={imageURLToAdd}
         onChange={setImageURLToAdd}
         onEnterPressed={addCharacter}
@@ -78,7 +80,7 @@ const AddCharacterForm: React.FC<Props> = ({ onAddCharacter, nextId }) => {
       <Button
         onClick={addCharacter}
       >
-          Add
+        {t('characters.add.button')}
       </Button>
     </AddCharacterFormWrapper>
   );
