@@ -1,17 +1,14 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Character } from '../../models/Character';
 import Loader from '../../components/Loader';
 import CharacterImage from '../../components/CharacterImage';
 import Title from '../../components/Title';
 import { CharacterDetailsWrapper, Detail } from './styles';
+import { useAppSelector } from '../../redux/store';
+import DisplayError from '../../components/DisplayError';
 
-interface Props {
-  characters: Character[],
-  loading: boolean
-}
-
-const CharacterDetails: React.FC<Props> = ({ characters, loading }) => {
+const CharacterDetails: React.FC = () => {
+  const { characters, isFetchingCharacters, fetchingError } = useAppSelector((state) => state.characters);
   const params = useParams();
 
   const id = Number(params.id);
@@ -20,16 +17,18 @@ const CharacterDetails: React.FC<Props> = ({ characters, loading }) => {
 
   return (
     <>
-      {loading && <Loader />}
+      {isFetchingCharacters && <Loader />}
 
-      {!loading && !character &&
+      {!isFetchingCharacters && !character &&
         <div>
-          Unknown character<br/>
+          <DisplayError>Unknown character</DisplayError>
           <Link to="/characters">Go back to list</Link>
         </div>
       }
 
-      {!loading && character &&
+      {fetchingError && <DisplayError>{fetchingError}</DisplayError>}
+
+      {!isFetchingCharacters && character &&
         <CharacterDetailsWrapper>
           <Title size="small">{character.name}</Title>
 

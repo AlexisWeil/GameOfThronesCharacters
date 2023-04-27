@@ -17,3 +17,8 @@ export const CharacterItemName = styled.span`
   font-family: 'GoT';
   margin-left: 10px;
 `;
+
+export const CharacterDeleteIcon = styled.span`
+  font-size: 1.5em;
+  margin-right: 10px;
+`;

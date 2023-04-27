@@ -1,31 +1,23 @@
-import { Link, Route, Routes, useMatch } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import CharactersList from '../../pages/CharactersList';
 import Home from '../../pages/Home';
 import CharacterDetails from '../../pages/CharacterDetails';
-import { Character, CharacterAPI, parseCharacterAPI } from '../../models/Character';
-import { useEffect, useState } from 'react';
+import { Character } from '../../models/Character';
+import { useEffect } from 'react';
 import { LeftMenu, LeftMenuItem, LeftMenuLogo, TemplateContent, TemplateWrapper } from './styles';
-import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { addNewCharacter, fetchCharacters } from '../../redux/charactersReducer';
 
 const Logo = require('./assets/logo.png');
 
 const Template = () => {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const { characters } = useAppSelector((state) => state.characters)
 
   useEffect(() => {
-    axios.get<CharacterAPI[]>('https://thronesapi.com/api/v2/Characters')
-      .then((res) => {
-        setCharacters(res.data.map(parseCharacterAPI));
-        setLoading(false);
-      });
+    if (characters.length === 0)
+      dispatch(fetchCharacters());
   }, []);
-
-  const onAddCharacter = (character: Character) => {
-    const newCharacters = characters.concat(character);
-
-    setCharacters(newCharacters);
-  };
 
   return (
     <TemplateWrapper>
@@ -53,8 +45,8 @@ const Template = () => {
       <TemplateContent>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/characters" element={<CharactersList loading={loading} characters={characters} onAddCharacter={onAddCharacter} />}/>
-          <Route path="/character/:id" element={<CharacterDetails loading={loading} characters={characters} />}/>
+          <Route path="/characters" element={<CharactersList />}/>
+          <Route path="/character/:id" element={<CharacterDetails />}/>
         </Routes>
       </TemplateContent>
     </TemplateWrapper>
